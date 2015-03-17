@@ -60,7 +60,7 @@
     //deletes all the objects in the tasks
     $app->post("/delete_tasks", function() use ($app) {
         Task::deleteAll();
-        return $app['twig']->render('index.twig', array('tasks' => Task::deleteAll(), 'categories' => Category::getAll()));
+        return $app['twig']->render('tasks.twig', array('tasks' => Task::deleteAll(), 'categories' => Category::getAll()));
     });
 
     //I have no idea
