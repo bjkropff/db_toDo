@@ -28,11 +28,11 @@
 
              $description = "Wash the dog";
              $category_id = $test_category->getId();
-             $test_Task = new Task($description, $id);
+             $test_task = new Task($description, $id, $category_id);
              $test_task->save();
 
              //Act
-             $result = $test_Task->getId();
+             $result = $test_task->getId();
 
              //Assert
              $this->assertEquals(true, is_numeric($result));
@@ -43,12 +43,12 @@
              // Arrange
              $name = "Home stuff";
              $id = null;
-             $test_category = new Task($description, $id, $category_id);
-             $test_task->save();
+             $test_category = new Category($name, $id);
+             $test_category->save();
 
-             $description = "Wash the dog";
+             $name = "Wash the dog";
              $category_id = $test_category->getId();
-             $test_task = new Task($description, $id, $category_id);
+             $test_task = new Task($name, $id, $category_id);
              $test_task->save();
 
              //Act
@@ -68,14 +68,14 @@
 
              $description = "Wash the dog";
              $category_id = new Category($name, $id);
-             $test_Task = new Task($description, $id, $category_id);
+             $test_task = new Task($description, $id, $category_id);
              $test_task->save();
 
              //Act
-             $test_Task->setId(2);
+             $test_task->setId(2);
 
              //Assert
-             $result = $test_Task->getId();
+             $result = $test_task->getId();
              $this->assertEquals(2, $result);
          }
 
@@ -110,8 +110,8 @@
 
              $description = "Wash the dog";
              $category_id = $test_category->getId();
-             $test_Task = new Task($description, $id, $category_id);
-             $test_Task->save();
+             $test_task = new Task($description, $id, $category_id);
+             $test_task->save();
 
              $description2 = "Water the lawn";
              $test_task2 = new Task($description2, $id, $category_id);
@@ -121,7 +121,7 @@
              $result = Task::getAll();
 
              //Assert
-             $this->assertEquals([$test_Task, $test_Task2], $result);
+             $this->assertEquals([$test_task, $test_task2], $result);
          }
 
          function test_deleteAll()
@@ -134,12 +134,12 @@
 
              $description = "Wash the dog";
              $category_id = $test_category->getId();
-             $test_Task = new Task($description, $id, $category_id);
-             $test_Task->save();
+             $test_task = new Task($description, $id, $category_id);
+             $test_task->save();
 
              $description2 = "Water the lawn";
-             $test_Task2 = new Task($description2, $id, $category_id);
-             $test_Task2->save();
+             $test_task2 = new Task($description2, $id, $category_id);
+             $test_task2->save();
 
              //Act
              Task::deleteAll();
@@ -163,14 +163,14 @@
              $test_task->save();
 
              $description2 = "Water the lawn";
-             $test_task2 = new Task($description, $id, $category_id);
-             $task_task2->save();
+             $test_task2 = new Task($description2, $id, $category_id);
+             $test_task2->save();
 
              //Act
-             $result = Task::find($test_Task->getId());
+             $result = Task::find($test_task->getId());
 
              //Assert
-             $this->assertEquals($test_Task, $result);
+             $this->assertEquals($test_task, $result);
          }
 
      }

@@ -144,7 +144,7 @@
             $test_category_id = $test_category->getId();
 
             $description = "Email client";
-            $test_task = new Task($description2, $id, $test_category_id);
+            $test_task = new Task($description, $id, $test_category_id);
             $test_task->save();
 
             $description2 = "Meet with boss";
@@ -152,7 +152,7 @@
             $test_task2->save();
 
             //Act
-            $result = $test_category->getTask();
+            $result = $test_category->getTasks();
 
 
             //Assert
