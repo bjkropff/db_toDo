@@ -1,4 +1,7 @@
 <?php
+
+    // All comments in Category.php is relevent here, in Task
+
     class Task
     {
         private $description;
@@ -8,11 +11,6 @@
         {
             $this->description = $description;
             $this->id = $id;
-        }
-
-        function getId()
-        {
-            return $this->id;
         }
 
         function setId($new_id)
@@ -28,6 +26,11 @@
         function getDescription()
         {
             return $this->description;
+        }
+
+        function getId()
+        {
+            return $this->id;
         }
 
         function save()
