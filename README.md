@@ -1,7 +1,7 @@
-To Do list project
+To Do List Database Project
 
-Kyle Bulloch and Bryan Borgeson
+Bryan Borgeson and Brian Kropff
 
-Using twig to create a task list with ability to add tasks and delete all.
+03-19-2015
 
-03 04 2015
+Expand original to-do list project to interact with backend database for storing to-dos and categories of to-dos.
