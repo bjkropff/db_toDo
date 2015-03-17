@@ -5,7 +5,7 @@
     class Task
     {
         private $description;
-        private $cateogory_id;
+        private $category_id;
         private $id;
 
         function __construct($description, $id = null, $category_id)
