@@ -21,9 +21,14 @@
                 <li><a href='/categories/{{ category.getId }}'>{{ category.getName }}</a></li>
             {% endfor %}
         </ul>
+        <form action='/delete_categories' method='post'>
+            <button name='delete_category'>Clear</button>
+        </form>
         {% else %}
             <p>There are no categories yet!</p>
         {% endif %}
+
+
 
         <!-- OLD CODE -->
         <!-- <p><a href='categories'>Click here</a> to see all of the categories and to add a category.</p>

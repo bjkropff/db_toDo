@@ -12,6 +12,10 @@
                     <li>{{ task.getDescription }}</li>
                 {% endfor %}
             </ul>
+            <form action='/delete_tasks' method='post'>
+                <button name='submit'>Clear</button>
+            </form>
+
         {% endif %}
 
         <h4>Add a task</h4>

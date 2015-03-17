@@ -31,7 +31,7 @@
     //get method that is returning categories.twig to the user
     $app->get("/categories/{id}", function($id) use ($app){
         $category = Category::find($id);
-        return $app['twig']->render('category.twig', array('category' => $category, 'tasks' => $category->getTasks()));
+        return $app['twig']->render('category.twig', array('category' => $category, 'tasks' => $category->getTasks(), 'tasks' => Task::deleteAll()));
     });
 
     //saving the user input from the description field and returning it to tasks.twig
@@ -54,13 +54,13 @@
     //deletes all the objects in the categories
     $app->post("/delete_categories", function() use ($app) {
         Category::deleteAll();
-        return $app['twig']->render('index.twig');
+        return $app['twig']->render('index.twig', array('categories' => Category::deleteAll()));
     });
 
     //deletes all the objects in the tasks
     $app->post("/delete_tasks", function() use ($app) {
         Task::deleteAll();
-        return $app['twig']->render('index.twig');
+        return $app['twig']->render('index.twig', array('tasks' => Task::deleteAll(), 'categories' => Category::getAll()));
     });
 
     //I have no idea
