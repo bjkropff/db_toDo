@@ -46,9 +46,9 @@
              $test_category = new Category($name, $id);
              $test_category->save();
 
-             $name = "Wash the dog";
+             $description = "Wash the dog";
              $category_id = $test_category->getId();
-             $test_task = new Task($name, $id, $category_id);
+             $test_task = new Task($description, $id, $category_id);
              $test_task->save();
 
              //Act
@@ -67,7 +67,7 @@
              $test_category->save();
 
              $description = "Wash the dog";
-             $category_id = new Category($name, $id);
+             $category_id = $test_category->getId();
              $test_task = new Task($description, $id, $category_id);
              $test_task->save();
 

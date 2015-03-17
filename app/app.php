@@ -20,7 +20,7 @@
 
     //get method that is returning index.twig to the user
     $app->get("/", function() use ($app) {
-        return $app['twig']->render('index.twig');
+        return $app['twig']->render('index.twig', array('categories' => Category::getAll()));
     });
 
     //get method that is returning tasks.twig to the user
@@ -29,22 +29,26 @@
     });
 
     //get method that is returning categories.twig to the user
-    $app->get("/categories", function() use ($app){
-        return $app['twig']->render('categories.twig', array('categories' => Category::getAll()));
+    $app->get("/categories/{id}", function($id) use ($app){
+        $category = Category::find($id);
+        return $app['twig']->render('category.twig', array('category' => $category, 'tasks' => $category->getTasks()));
     });
 
     //saving the user input from the description field and returning it to tasks.twig
     $app->post("/tasks", function() use ($app) {
-        $task = new Task($_POST['description']);
+        $description = $_POST['description'];
+        $category_id = $_POST['category_id'];
+        $task = new Task($description, $id = null, $category_id);
         $task->save();
-        return $app['twig']->render('tasks.twig', array('tasks' => Task::getAll()));
+        $category = Category::find($category_id);
+        return $app['twig']->render('category.twig', array('category' => $category, 'tasks' => $category->getTasks()));
     });
 
     //saving the user input from the name field and returning it to categories.twig
     $app->post("/categories", function() use ($app) {
         $category = new Category($_POST['name']);
         $category->save();
-        return $app['twig']->render('categories.twig', array('categories' => Category::getAll()));
+        return $app['twig']->render('index.twig', array('categories' => Category::getAll()));
     });
 
     //deletes all the objects in the categories
