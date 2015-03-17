@@ -5,17 +5,25 @@
     class Task
     {
         private $description;
+        private $cateogory_id;
         private $id;
 
-        function __construct($description, $id = null)
+        function __construct($description, $id = null, $category_id)
         {
             $this->description = $description;
             $this->id = $id;
+            $this->category_id = $category_id;
         }
 
+        // SETTERS
         function setId($new_id)
         {
             $this->id = (int) $new_id;
+        }
+
+        function setCategoryId($new_category_id)
+        {
+            $this->category_id = (int) $new_category_id;
         }
 
         function setDescription($new_description)
@@ -23,19 +31,25 @@
             $this->description = (string) $new_description;
         }
 
-        function getDescription()
-        {
-            return $this->description;
-        }
-
+        // GETTERS
         function getId()
         {
             return $this->id;
         }
 
+        function getCategoryId()
+        {
+            return $this->category_id;
+        }
+
+        function getDescription()
+        {
+            return $this->description;
+        }
+
         function save()
         {
-            $statement =$GLOBALS['DB']->query("INSERT INTO tasks (description) VALUES ('{$this->getDescription()}') RETURNING id;");
+            $statement =$GLOBALS['DB']->query("INSERT INTO tasks (description) VALUES ('{$this->getDescription()}', {$this->getCategoryId()}) RETURNING id;");
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $this->setId($result['id']);
         }
@@ -47,7 +61,8 @@
             foreach ($returned_tasks as $task) {
                 $description = $task['description'];
                 $id = $task['id'];
-                $new_task = new Task($description, $id);
+                $category_id = $task['category_id']
+                $new_task = new Task($description, $id, $category_id);
                 array_push($tasks, $new_task);
             }
             return $tasks;
