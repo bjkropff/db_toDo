@@ -1,0 +1,13 @@
+-------------------------------
+Set up the database in Postgres
+-------------------------------
+
+1) Open terminal and start Postgres
+
+2) Create database to_do, then connect to the new database
+    ex: Guest=# CREATE DATABASE to_do;
+        Guest=# \c to_do;
+
+3) Create tables categories and tasks with the following columns:
+    ex: to_do=# CREATE TABLE categories (id serial PRIMARY KEY, name varchar);
+        to_do=# CREATE TABLE tasks (id serial PRIMARY KEY, description varchar, category_id);
